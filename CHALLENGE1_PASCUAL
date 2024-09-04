@@ -1,0 +1,33 @@
+#include <Leanbot.h>                    // use Leanbot library
+ 
+ 
+void setup() {
+  Leanbot.begin();                      // initialize Leanbot
+}
+ 
+ 
+void loop() {
+  LbMission.begin( TB1A + TB1B );       // start mission when both TB1A and TB1B touched
+ 
+//moving forward
+  LbMotion.runLR( +2000, +2000 );       // go straight forward with speed 2000 steps/s
+  LbMotion.waitDistanceMm (200 );       //   for 200 mm distance
+  LbMotion.stopAndWait();
+ 
+  //moving forward
+  LbMotion.runLR( +2000, +2000 );       // go straight forward with speed 2000 steps/s
+  LbMotion.waitDistanceMm (200 );       //   for 200 mm distance
+  LbMotion.stopAndWait();
+ 
+  //moving backward
+  LbMotion.runLR( -2000, -2000 );       // go straight forward with speed 2000 steps/s
+  LbMotion.waitDistanceMm (200 );       //   for 200 mm distance
+  LbMotion.stopAndWait();
+ 
+  //moving backward
+  LbMotion.runLR( -2000, -2000 );       // go straight forward with speed 2000 steps/s
+  LbMotion.waitDistanceMm (200 );       //   for 200 mm distance
+  LbMotion.stopAndWait();
+ 
+  LbMission.end();                      // stop, finish mission
+}
