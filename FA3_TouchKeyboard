@@ -1,0 +1,46 @@
+#include <Leanbot.h>                    // use Leanbot library
+ 
+ 
+void setup() {
+  Leanbot.begin();                     // initialize Leanbot
+  Serial.begin(9600);
+}
+ 
+void loop() {
+  // TB1A button 
+ if (LbTouch.read(TB1A) == HIGH) {
+   Leanbot.tone(1500);
+   delay(1000);
+  }
+ 
+ 
+// TB1B button
+ if (LbTouch.read(TB1B) == HIGH) {
+   Leanbot.tone(3020, 500);
+   delay(1000);
+   Leanbot.tone(5303, 500);
+  delay(1000);
+ }
+ 
+ // TB2A button
+ if (LbTouch.read(TB2A) == HIGH) {
+   Leanbot.tone(7650, 500);
+   delay(1000);
+Leanbot.tone(5934, 500);
+   delay(1000);
+   Leanbot.tone(4055, 500);
+   delay(1000);
+ 
+ }
+ 
+ 
+ 
+  // TB2B button
+   if (LbTouch.read(TB2B) == HIGH) {
+   Leanbot.tone(4929, 500);
+   delay(500);
+Leanbot.tone(4929, 500);
+   delay(1000);
+ 
+ }
+}
