@@ -1,0 +1,24 @@
+#include <Leanbot.h> // Include the Leanbot Library
+ 
+void setup() {
+ Leanbot.begin(); // Initizialize the Leanbot hardware or Library.
+}
+ 
+void loop() {
+    
+ LbMission.begin(TB1A + TB1B);
+ LbRGB[ledA] = CRGB::Red;
+ LbRGB.show();
+ 
+ LbRGB[ledD] = CRGB::Red;
+ LbRGB.show();
+ 
+ LbRGB[ledE] = CRGB::Green;
+ LbRGB.show();
+ 
+ LbRGB[ledF] = CRGB::Green;
+ LbRGB.show();
+ LbMission.end();
+ 
+}
+ 
