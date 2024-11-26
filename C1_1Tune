@@ -1,0 +1,47 @@
+
+/*
+  Basic Leanbot Motion
+ 
+  Wait for TB1A+TB1B touch signal, then go straight for 100 mm, then stop.
+ 
+  More Leanbot examples at  https://git.pythaverse.space/leanbot/Examples
+*/
+ 
+ 
+#include <Leanbot.h>                    // use Leanbot library
+ 
+ 
+void setup() {
+  Leanbot.begin();                      // initialize Leanbot
+}
+ 
+ 
+void loop() {
+  //Begin a mission for TB1A and TB1B.
+  LbMission.begin( TB1A + TB1B );       
+ 
+  //Generate a mission for TB1A and TB1B.
+ 
+  //Short Tone
+  Leanbot.tone(500, 100);
+  LbDelay(3000);
+ 
+  //Long Tone
+  Leanbot.tone(500, 1000);
+  LbDelay(3000);
+ 
+  //Short Tone
+  Leanbot.tone(500, 100);
+  LbDelay(3000);
+ 
+  //Long Tone
+  Leanbot.tone(500, 1000);
+  LbDelay(3000);
+ 
+  //Short Tone
+  Leanbot.tone(500, 100);
+  LbDelay(3000);
+ 
+  //End the mission.
+  LbMission.end();                      
+}
