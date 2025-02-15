@@ -1,0 +1,83 @@
+/*
+  Basic Leanbot Motion
+ 
+  Wait for TB1A+TB1B touch signal, then go straight for 100 mm, then stop.
+ 
+  More Leanbot examples at  https://git.pythaverse.space/leanbot/Examples
+*/
+ 
+ 
+#include <Leanbot.h>                    // use Leanbot library
+ 
+ 
+void setup() {
+  Leanbot.begin();
+}
+ 
+void loop() {
+  LbMission.begin(TB1A + TB1B);
+ 
+  LbRGB.clear();
+  LbRGB[ledO] = CRGB::Red;
+  LbRGB.show();
+ 
+  LbGripper.open(); // going to block 3
+  LbDelay(1000);
+  LbMotion.runLR(+2000, +2000);
+  LbMotion.waitDistanceMm(215);
+  LbMotion.stopAndWait();
+ 
+  LbRGB.clear();
+  LbRGB[ledO] = CRGB::Green;
+  LbRGB.show();
+ 
+  LbGripper.close();
+  LbDelay(1000);
+ 
+  LbMotion.runLRrpm(15, -10); // turning and going to block 15
+  LbMotion.waitRotationDeg(110);
+  LbMotion.runLR(+2000, +2000);
+  LbMotion.waitDistanceMm(400);
+  LbMotion.stopAndWait();
+ 
+  LbRGB.clear();
+  LbRGB[ledO] = CRGB::Red;
+  LbRGB.show();
+ 
+  LbGripper.open(); // turning and going to block 4
+  LbDelay(1000);
+  LbMotion.runLRrpm(-15, 10);
+  LbMotion.waitRotationDeg(140);
+  LbMotion.runLR(+2000, +2000);
+  LbMotion.waitDistanceMm(510);
+  LbMotion.stopAndWait();
+ 
+  LbRGB.clear();
+  LbRGB[ledO] = CRGB::Green;
+  LbRGB.show();
+ 
+  LbGripper.close();
+  LbDelay(1000);
+ 
+  LbMotion.runLRrpm(15, -10); // turning and going to block 18
+  LbMotion.waitRotationDeg(90);
+  LbMotion.runLR(+2000, +2000);
+  LbMotion.waitDistanceMm(220);
+  LbMotion.stopAndWait();
+ 
+  LbRGB.clear();
+  LbRGB[ledO] = CRGB::Red;
+  LbRGB.show();
+ 
+  LbGripper.open();
+  LbDelay(1000);
+ 
+  LbMotion.runLRrpm(-15, 10); // turning and going to block 7
+  LbMotion.waitRotationDeg(105);
+  LbMotion.runLR(+2000, +2000);
+  LbMotion.waitDistanceMm(525);
+  LbMotion.stopAndWait();
+ 
+  
+  LbMission.end();
+}
