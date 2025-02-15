@@ -1,0 +1,53 @@
+/*
+  Basic Leanbot Motion
+ 
+  Wait for TB1A+TB1B touch signal, then go straight for 100 mm, then stop.
+ 
+  More Leanbot examples at  https://git.pythaverse.space/leanbot/Examples
+*/
+ 
+ 
+#include <Leanbot.h>                    // use Leanbot library
+ 
+ 
+void setup() {
+  Leanbot.begin();
+}
+ 
+void loop() {
+  LbMission.begin(TB1A + TB1B);
+do {
+  LbMotion.runLR(+2000, +2000);
+}
+  while ((Leanbot.pingCm() >= 15));
+  LbMotion.runLRrpm(-25, 30);
+  LbMotion.waitRotationDeg(45);
+ 
+do {
+   LbMotion.runLR(+2500, +2500); //2nd turn
+}
+while ((Leanbot.pingCm() >= 15));
+  LbMotion.runLRrpm(-30, 30);
+  LbMotion.waitRotationDeg(35);
+ 
+do {
+   LbMotion.runLR(+2500, +2500); //3rd turn
+}
+while ((Leanbot.pingCm() >= 12));
+  LbMotion.runLRrpm(30, -30);
+  LbMotion.waitRotationDeg(45);
+ 
+do {
+  LbMotion.runLR(+3000, +3000); //4th turn
+}
+while ((Leanbot.pingCm() >= 12));
+  LbMotion.runLRrpm(30, -30);
+  LbMotion.waitRotationDeg(45);
+ 
+do {
+  LbMotion.runLR(+2700, +2700);
+}
+while ((Leanbot.pingCm() >= 10));
+ 
+LbMission.end();
+}
