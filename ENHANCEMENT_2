@@ -1,0 +1,58 @@
+/*
+  Basic Leanbot Motion
+
+  Wait for TB1A+TB1B touch signal, then go straight for 100 mm, then stop.
+
+  More Leanbot examples at  https://git.pythaverse.space/leanbot/Examples
+*/
+
+
+#include <Leanbot.h>                    // use Leanbot library
+
+
+void setup() {
+  Leanbot.begin();                      // initialize Leanbot
+}
+
+
+void loop() {
+  LbMission.begin( TB1A + TB1B );       // start mission when both TB1A and TB1B touched
+
+
+// 2ND MOVE
+LbMotion.runLR(+2000, +2000);
+  LbMotion.waitDistanceMm(120);
+   LbMotion.runLRrpm(30, 0);
+   LbMotion.waitRotationDeg(90);
+  LbMotion.stopAndWait();
+
+  // 3RD MOVE
+LbMotion.runLR(+2000, +2000);
+  LbMotion.waitDistanceMm(260);
+   LbMotion.runLRrpm(30, 0);
+   LbMotion.waitRotationDeg(85);
+  LbMotion.stopAndWait();
+
+// 4TH MOVE
+LbMotion.runLR(+2000, +2000);
+  LbMotion.waitDistanceMm(600);
+   LbMotion.runLRrpm(30, 0);
+   LbMotion.waitRotationDeg(85);
+  LbMotion.stopAndWait();
+
+// 5TH MOVE
+ LbMotion.runLR(+2000, +2000);
+  LbMotion.waitDistanceMm(240);
+   LbMotion.runLRrpm(30, 0);
+   LbMotion.waitRotationDeg(85);
+  LbMotion.stopAndWait();
+
+// 6TH MOVE
+  LbMotion.runLR( +1000, +1000 );       // go straight forward with speed 1000 steps/s
+  LbMotion.waitDistanceMm( 125 );       //   for 100 mm distance
+ LbMotion.runLRrpm(30, -30);
+ LbMotion.stopAndWait();
+ 
+    LbMission.end();
+
+}
